@@ -12,7 +12,9 @@ defmodule SudokuSolver do
   import Enum
 
   # used to cache all squares, units, and peer relationships
-  defrecord Board, squares: nil, units: nil, peers: nil
+  defmodule Board do
+    defstruct squares: nil, units: nil, peers: nil
+  end
 
   def cross(list_a, list_b) do
     lc a inlist list_a, b inlist list_b, do: [a] ++ [b]
@@ -165,7 +167,7 @@ defmodule SudokuSolver do
   Use display/1 to print the grid as a square.
   """
   def solve(grid) do
-    board = Board[squares: squares, units: units, peers: peers]
+    board = %Board{squares: squares, units: units, peers: peers}
     grid
       |> parse_grid(board)
       |> search(board)
