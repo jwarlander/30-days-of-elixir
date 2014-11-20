@@ -271,7 +271,7 @@ if List.first(System.argv) == "--test" do
     end
 
     test "setup" do
-      dealer = Process.spawn_monitor Player, :start_game, []
+      dealer = Process.spawn Player, :start_game, [], [:monitor]
       :timer.sleep(100) # TODO why is this necessary?
       two    = spawn Player, :join, []
       three  = spawn Player, :join, []
