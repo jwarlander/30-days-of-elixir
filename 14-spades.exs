@@ -80,7 +80,9 @@ defmodule Dealer do
     Enum.each players, fn p -> send(p, :start) end
   end
 
-  defp wait_for_plays(players, cards_played \\ [], tricks_played \\ 0) when tricks_played < 13 do
+  defp wait_for_plays(players, cards_played \\ [], tricks_played \\ 0)
+
+  defp wait_for_plays(players, cards_played, tricks_played) when tricks_played < 13 do
     if length(cards_played) == 0, do: IO.puts "#{tricks_played} tricks played"
     receive do
       action = {:play, card, player} ->
