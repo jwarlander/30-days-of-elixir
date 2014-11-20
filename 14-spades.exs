@@ -64,9 +64,9 @@ defmodule Dealer do
 
   defp shuffle do
     :random.seed(:erlang.now)
-    deck = lc suit inlist ~w(Hearts Diamonds Clubs Spades),
-              face inlist [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"],
-              do: {suit, face}
+    deck = for suit <- ~w(Hearts Diamonds Clubs Spades),
+               face <- [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"],
+               do: {suit, face}
     Enum.shuffle(deck)
   end
 
