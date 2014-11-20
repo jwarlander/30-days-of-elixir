@@ -216,7 +216,7 @@ defmodule Player do
     try do
       number = IO.gets("Enter a card number to play: ")
         |> String.strip
-        |> binary_to_integer
+        |> String.to_integer
       card = Enum.at(hand, number-1)
       unless card, do: raise ArgumentError
       card
